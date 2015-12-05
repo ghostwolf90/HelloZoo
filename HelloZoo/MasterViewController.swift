@@ -16,6 +16,8 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
     var detailViewController: DetailViewController? = nil
     var objects = [AnyObject]()
     var dataArray = [AnyObject]()
+    
+    var animalArray = [AnyObject]()
     var animalsDict = [String:[String]]()
     var animalSectonTitles = [String]()
     
@@ -64,16 +66,16 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
     }
     
     func creatAnimalDic(){
-        for item in 1...100 {
+        for item in 1...10 {
             let animalName = dataArray[item]["A_Name_Ch"] as? String
             let animalLocation = dataArray[item]["A_Location"] as? String
-            print(animalName)
-            print(animalLocation)
+            //print(animalName)
+            //print(animalLocation)
             
             if var animalValues = animalsDict[animalLocation!]{
                 animalValues.append(animalName!)
                 animalsDict[animalLocation!] = animalValues
-                print(animalValues)
+                //print(animalValues)
             }else{
                 animalsDict[animalLocation!] = [animalName!]
             }
@@ -114,6 +116,18 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
+    
+    //修改標題視圖高度
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    //修改標題視圖的文字及顏色
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.textColor = UIColor.orangeColor()
+        headerView.textLabel?.font = UIFont(name: "Avenir", size:  25.0)
+    }
 
     // MARK: - Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -123,7 +137,8 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
             menuTableViewController.currentItem = self.title!
             menuTableViewController.transitioningDelegate = self.menuTransitionManager
             //menuTransitionManager.delegate = self
-        }else if segue.identifier == "showDetail" {
+        }
+        else if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 //取得被選取到的這一隻動物的資料
                 let object = dataArray[indexPath.row]
@@ -163,6 +178,7 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
         let animalKey = animalSectonTitles[indexPath.section]
         if let animalValues = animalsDict[animalKey]{
             cell.animalLbl?.text = animalValues[indexPath.row]
+            cell.detailLbl?.text = animalSectonTitles[indexPath.row]
             let imageFilename = animalValues[indexPath.row].lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_", options: [], range: nil)
             cell.imageView?.image = UIImage(named: imageFilename)
             
