@@ -37,23 +37,6 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
         
         dataTask.resume()
         
-        for animal in dataArray{
-            let animaltemp = (dataArray as! [String: AnyObject])["A_Location"] as! String
-            print(animaltemp)
-            /*
-            let animalKey = animal.substringToIndex(animaltemp)
-            
-            if var animalValues = animalsDict[animalKey]{
-                animalValues.append(animal)
-                animalsDict[animalKey] = animalValues
-            }else{
-                animalsDict[animalKey] = [animal]
-            }*/
-            
-        }
-        animalSectonTitles = [String](animalsDict.keys)
-        animalSectonTitles.sort({ $0 < $1 })
-        
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -66,7 +49,7 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
     }
     
     func creatAnimalDic(){
-        for item in 1...10 {
+        for item in 1...20 {
             let animalName = dataArray[item]["A_Name_Ch"] as? String
             let animalLocation = dataArray[item]["A_Location"] as? String
             //print(animalName)
@@ -156,9 +139,11 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        //回傳區塊數
         return animalSectonTitles.count
     }
     
+    //顯示區塊表頭標題
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return animalSectonTitles[section]
     }
@@ -179,9 +164,10 @@ class MasterViewController: UITableViewController, NSURLSessionDelegate, NSURLSe
         if let animalValues = animalsDict[animalKey]{
             cell.animalLbl?.text = animalValues[indexPath.row]
             cell.detailLbl?.text = animalSectonTitles[indexPath.row]
+           /*
             let imageFilename = animalValues[indexPath.row].lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_", options: [], range: nil)
             cell.imageView?.image = UIImage(named: imageFilename)
-            
+            */
         }
         //顯示動物的中文名稱於Table View中
         //cell.animalLbl?.text = dataArray[indexPath.row]["A_Name_Ch"] as? String
