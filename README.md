@@ -3,7 +3,7 @@
 
 ## 使用技術部份
 * [索引字串（index String）](#index String)
-* [修改標題視圖高度&的文字及顏色（Set Height & Font and Color）](#Set Height & Font and Color)
+* [修改標題視圖高度&文字及顏色（Set Height & Font and Color）](#Set Height & Font and Color)
 * [參考資料來源（Origin）](#Origin)
 
 ### 索引字串（index String）
@@ -37,7 +37,7 @@ override func tableView(tableView: UITableView, titleForHeaderInSection section:
 }
 ```
 
-###修改標題視圖高度&的文字及顏色（Set Height & Font and Color
+###修改標題視圖高度&文字及顏色（Set Height & Font and Color
 美觀小技巧
 ```swift
 //修改標題視圖高度
