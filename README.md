@@ -53,5 +53,5 @@ override func tableView(tableView: UITableView, willDisplayHeaderView view: UIVi
 ```
 
 ### 參考資料來源（Origin）
-APPCODA : http://www.appcoda.com.tw/json-data-taipei-tutorial/
-台北市政府資料開放平台 : http://data.taipei/
+1.APPCODA : http://www.appcoda.com.tw/json-data-taipei-tutorial/
+2.台北市政府資料開放平台 : http://data.taipei/
