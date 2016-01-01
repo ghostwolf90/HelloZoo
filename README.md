@@ -7,7 +7,8 @@
 * [參考資料來源（Origin）](#Origin)
 
 ### 索引字串（index String）
-從JSON抓下來的資料雖然已整理過了，但如果想將動物依園區分類時，可以參考下列方式，這是將資料擷取下來至Array後
+從JSON抓下來的資料雖然已整理過了，但如果想將動物依園區分類時，可以參考下列方式，這是將資料擷取下來至Array後，如圖所示
+![screenshot](https://github.com/ghostwolf90/HelloZoo/blob/master/image/EM_001.png)
 ```swift
 func creatAnimalDic(){
   //先做20筆，發現太多筆在使用TableView時會崩潰...
